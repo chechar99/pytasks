@@ -1,3 +1,4 @@
+from celery.canvas import group
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -13,5 +14,14 @@ class TasksView(TemplateView):
     def post(self, request):
         mytask = request.POST.get('task')
         if mytask == 'send_mail':
-            task = send_mail.delay()
+
+            task = send_mail.delay('prueba')
             return HttpResponse('tarea creada {}'.format(task.id))
+
+        elif mytask == 'group_test':
+
+            signatures = [send_mail.s(i) for i in range(20)]
+            mygroup = group(signatures)
+            group_result = mygroup()
+
+            return HttpResponse('grupo creado {}'.format(group_result.id))

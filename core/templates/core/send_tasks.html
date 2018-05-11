@@ -11,5 +11,13 @@
         <button type="submit"> Send mail</button>
 
     </form>
+
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="task" value="group_test">
+        <button type="submit"> Send Group Mail test</button>
+
+    </form>
 </body>
 </html>
