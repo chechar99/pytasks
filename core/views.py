@@ -14,7 +14,7 @@ class TasksView(TemplateView):
     def post(self, request):
         mytask = request.POST.get('task')
         if mytask == 'send_mail':
-            task = send_mail.delay()
+            task = send_mail.delay('body')
             return HttpResponse('tarea creada {}'.format(task.id))
 
         elif mytask == 'group_test':

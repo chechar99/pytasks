@@ -3,9 +3,9 @@ import time
 
 
 @task
-def send_mail():
+def send_mail(body):
     time.sleep(2)
-    print('mail enviado')
+    print('mail enviado {}'.format(body))
 
 
 @task
